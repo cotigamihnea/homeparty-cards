@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": ["src/server", "src/electron", "src/shared", "scripts", "tests", "*.ts"],
+  "exclude": ["tests/e2e", "tests/client"]
+}

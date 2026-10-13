@@ -1,0 +1,835 @@
+body.phone {
+    min-height: 100dvh;
+}
+
+.phone-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 100dvh;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+        max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+.mini-brand {
+    align-self: flex-start;
+    max-width: 12rem;
+    margin: 0.25rem 0 0 0.25rem;
+    padding: 0.75rem 1rem 1rem;
+    border: 2px solid var(--white);
+    border-radius: 0.9rem;
+    font-size: var(--text-lead);
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    transform: rotate(-2deg);
+}
+
+.join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: auto;
+}
+
+.field-label {
+    font-size: var(--text-body);
+    font-weight: 750;
+}
+
+.name-input {
+    min-height: 3.5rem;
+    padding: 0 1rem;
+    border: 2px solid var(--line);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+    font-size: 1.25rem;
+    font-weight: 650;
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: var(--white);
+}
+
+.field-hint {
+    margin: 0;
+    font-size: var(--text-meta);
+    color: var(--muted);
+}
+
+.form-error {
+    min-height: 1.4em;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--danger);
+}
+
+.screen-title {
+    margin: 1rem 0 0;
+    font-size: var(--text-hero);
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+}
+
+.you-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-card);
+    background: var(--white);
+    color: var(--black);
+}
+
+.you-card.is-new {
+    animation: deal-in 480ms var(--ease-out) both;
+}
+
+.you-name {
+    font-size: 1.9rem;
+    font-weight: 850;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.screen-hint {
+    margin: 0;
+    font-size: var(--text-body);
+    color: var(--muted);
+}
+
+/* A line that matters more than a hint: the Happy Ending's "just for glory". */
+.screen-lead {
+    margin: 0;
+    font-size: var(--text-lead);
+    font-weight: 800;
+}
+
+.vip-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.panel-title {
+    margin: 0;
+    font-size: var(--text-panel);
+    font-weight: 800;
+}
+
+.game-screen {
+    gap: 1rem;
+}
+
+.game-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.6rem 0.75rem;
+    min-height: 3.25rem;
+    font-weight: 750;
+    color: var(--muted);
+}
+
+.game-header .countdown,
+.blank-writer-status .countdown {
+    min-width: 3.25rem;
+    padding: 0.35rem 0.8rem;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 850;
+    text-align: center;
+}
+
+.game-header .countdown.has-ring,
+.blank-writer-status .countdown.has-ring {
+    --ring-size: 3.25rem;
+    padding: 0;
+    border: 0;
+    font-size: 1.1rem;
+}
+
+.game-screen .screen-title {
+    margin: 0;
+    font-size: var(--text-title);
+}
+
+.pause-banner {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-control);
+    background: var(--warn);
+    color: var(--black);
+    font-weight: 750;
+}
+
+.hand,
+.submission-list,
+.score-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Extra room for the badges on the cards' top edges. */
+.hand,
+.submission-list {
+    gap: 1.1rem;
+    padding-top: 0.6rem;
+}
+
+.white-card {
+    position: relative;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 1rem 1.1rem 1.1rem;
+    border: 0;
+    border-radius: var(--radius-card);
+    background: var(--white);
+    color: var(--black);
+    font-size: var(--text-lead);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.hand-card {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 140ms var(--ease-out);
+}
+
+.hand-card.is-selected {
+    outline: 0.2rem solid var(--crown);
+    outline-offset: 0.15rem;
+    transform: translateY(-2px);
+}
+
+/* A blank card waiting for words: a dashed line inside the card and a quiet prompt. */
+.hand-card.is-blank:not(.is-written) {
+    outline: 0.15rem dashed var(--muted-on-white);
+    outline-offset: -0.55rem;
+}
+
+.blank-prompt {
+    color: var(--muted-on-white);
+    font-weight: 700;
+}
+
+/* The blank card writer: a sheet at the top of the screen, clear of the on-screen keyboard. */
+.blank-writer {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow-y: auto;
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) 1rem
+        max(1rem, env(safe-area-inset-left));
+    background: var(--black);
+}
+
+.blank-writer-sheet {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.blank-writer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.blank-writer-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.blank-writer-status:empty {
+    display: none;
+}
+
+.blank-writer-label {
+    font-size: var(--text-meta);
+    font-weight: 750;
+    color: var(--muted);
+}
+
+.blank-writer-text {
+    width: 100%;
+    min-height: 6.5rem;
+    padding: 0.9rem 1rem;
+    border: 0;
+    border-radius: var(--radius-card);
+    background: var(--white);
+    color: var(--black);
+    font: inherit;
+    font-size: var(--text-lead);
+    font-weight: 800;
+    line-height: 1.25;
+    resize: none;
+}
+
+.blank-writer-text:focus-visible {
+    outline: 0.2rem solid var(--crown);
+    outline-offset: 0.15rem;
+}
+
+.blank-writer-count {
+    margin: 0;
+    font-size: var(--text-meta);
+    color: var(--muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.blank-writer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Never Have I Ever: the hand waits for the card to confess (dashed); the marked one gets a solid warning ring. */
+.hand.is-confessing .hand-card {
+    outline: 0.15rem dashed var(--muted);
+    outline-offset: 0.15rem;
+}
+
+.hand.is-confessing .hand-card.is-confessed {
+    outline: 0.2rem solid var(--warn);
+    transform: translateY(-2px);
+}
+
+.hand.is-confessing .hand-card:disabled {
+    outline: 0;
+    opacity: 0.45;
+    cursor: default;
+}
+
+/* Sits on the card's top edge, so it never covers card text. */
+.order-badge {
+    position: absolute;
+    top: -0.8rem;
+    right: 1rem;
+    padding: 0.15rem 0.7rem;
+    border: 2px solid var(--white);
+    border-radius: 999px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 850;
+}
+
+.submission-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-card);
+    background: none;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.submission-button .order-badge {
+    border-color: var(--crown);
+    background: var(--crown);
+    color: var(--black);
+}
+
+.action-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0 -1rem;
+    padding: 0.75rem 1rem max(0.75rem, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    background: var(--black);
+}
+
+/* House-rule moves under the hand: quiet ghost buttons, away from Send. */
+.house-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.score-section,
+.your-answer,
+.vip-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.vip-tools {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.score-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.9rem 0.55rem 0.6rem;
+    border-radius: var(--radius-control);
+    background: var(--surface);
+    font-size: 1.1rem;
+    font-weight: 650;
+}
+
+.score-row .avatar {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 1rem;
+}
+
+.score-row.is-me {
+    background: var(--white);
+    color: var(--black);
+    font-weight: 850;
+}
+
+.score-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.you-tag {
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 850;
+}
+
+.score-points {
+    font-variant-numeric: tabular-nums;
+    font-weight: 850;
+}
+
+.status-screen .screen-title {
+    margin-top: auto;
+}
+
+.status-screen .btn {
+    margin-bottom: auto;
+}
+
+.you-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.you-card .avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: var(--text-panel);
+}
+
+.avatar-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.avatar-swatch {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 3rem;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--avatar);
+    color: var(--black);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.avatar-swatch[aria-pressed='true'] {
+    box-shadow:
+        0 0 0 3px var(--black),
+        0 0 0 6px var(--white);
+}
+
+/* Taken: still its colour (the holder's initial says whose), just smaller. */
+.avatar-swatch:disabled {
+    cursor: not-allowed;
+    transform: scale(0.8);
+}
+
+.avatar-holder {
+    font-size: 1.1rem;
+    font-weight: 850;
+}
+
+.panel-screen .screen-title {
+    margin-top: 0.25rem;
+}
+
+.panel-screen .action-bar {
+    margin-top: auto;
+}
+
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.player-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: var(--radius-card);
+    background: var(--surface);
+}
+
+.player-row-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.player-row-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.player-row-away {
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.player-row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.player-row-actions .btn {
+    flex: 1 1 8rem;
+    width: auto;
+    min-height: 3rem;
+}
+
+.confirm-question {
+    margin: 0;
+    font-size: var(--text-lead);
+    font-weight: 800;
+}
+
+.plus-one {
+    margin: 0;
+    font-size: var(--text-title);
+    font-weight: 850;
+    color: var(--crown);
+}
+
+.plus-one.is-entering {
+    animation: pop 520ms var(--ease-out) 150ms both;
+}
+
+/* Cards on the phone: the same card as on the TV, laid out wide for reading. */
+.phone-screen {
+    --card-radius: var(--radius-card);
+}
+
+.card.is-preview {
+    --wide-card-text: 1.2rem;
+}
+
+.card.is-wide[data-size='xl'],
+.card.is-wide[data-size='xxl'],
+.card.is-wide[data-size='xxxl'] {
+    --wide-card-text: 1.05rem;
+}
+
+/* The Czar keeps the prompt in view while scrolling through the answers. */
+/* The prompt stays in view while the Czar browses, but never takes more than ~half the screen (a long Pick 3 on a
+   landscape phone): a longer filled-in sentence scrolls inside it. */
+.pinned-card {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    max-height: 45vh;
+    margin: 0 -1rem;
+    padding: 0.5rem 1rem 0.75rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--black);
+}
+
+.submission-button .card {
+    --wide-card-text: 1.15rem;
+    outline: 0.2rem solid transparent;
+    outline-offset: 0.15rem;
+    transition: outline-color var(--dur-state);
+}
+
+.submission-button.is-highlighted .card {
+    outline-color: var(--crown);
+}
+
+.answered-line {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Header: round, the VIP's menu, and the countdown ring. */
+.vip-menu-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 3rem;
+    padding: 0 0.9rem 0 0.75rem;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--white);
+    font-weight: 800;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vip-menu-button[aria-expanded='true'] {
+    border-color: var(--white);
+}
+
+.vip-menu-button .icon-crown {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.vip-menu {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.game-over-screen .final-rank {
+    margin: 1rem 0 -0.5rem;
+    font-size: 5.5rem;
+    font-weight: 850;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+}
+
+.game-over-screen .final-rank.is-entering {
+    animation: punch-in var(--dur-enter) var(--ease-out) both;
+}
+
+/* Entrances, each played once per round. */
+.intro-screen.is-entering .card {
+    animation: card-deal var(--dur-focal) var(--ease-out) both;
+}
+
+.hand.is-dealt li {
+    animation: fade-up var(--dur-enter) var(--ease-out) both;
+    animation-delay: calc(min(var(--i, 0), 10) * 45ms);
+}
+
+.answer-sent-screen.is-entering .card {
+    animation: card-land var(--dur-enter) var(--ease-out) both;
+}
+
+/* Waiting room: everyone's colours, and what happens next. */
+.lobby-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lobby-avatars {
+    display: flex;
+}
+
+.lobby-avatars .avatar {
+    width: 2rem;
+    height: 2rem;
+    margin-left: -0.5rem;
+    border: 2px solid var(--black);
+    font-size: var(--text-meta);
+}
+
+.lobby-avatars .avatar:first-child {
+    margin-left: 0;
+}
+
+.waiting-hints {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.avatar-picker-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+/* Join screen: the game's name on a tilted black card, a white card behind, and one line about the game. */
+.phone-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.phone-brand-cards {
+    position: relative;
+    align-self: flex-start;
+    margin: 0.5rem 0 0 0.5rem;
+}
+
+.phone-brand-back {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    background: var(--white);
+    transform: translate(1rem, 0.35rem) rotate(6deg);
+}
+
+.phone-brand-card {
+    position: relative;
+    max-width: 11ch;
+    margin: 0;
+    padding: 1.25rem 1.4rem 2rem;
+    border: 2px solid var(--white);
+    border-radius: var(--radius-card);
+    background: var(--black);
+    font-size: 2.1rem;
+    font-weight: 850;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    transform: rotate(-3deg);
+}
+
+.phone-tagline {
+    max-width: 26ch;
+    margin: 0;
+    font-size: var(--text-lead);
+    font-weight: 650;
+    color: var(--muted);
+}
+
+/* Landscape phones: less height, so titles and gaps tighten. */
+@media (orientation: landscape) and (max-height: 500px) {
+    .phone-screen {
+        gap: 0.75rem;
+    }
+
+    .screen-title,
+    .game-screen .screen-title {
+        font-size: 1.6rem;
+    }
+
+    .phone-brand-card {
+        font-size: 1.6rem;
+    }
+}
+
+/* Custom Fever: the player's own quota is written. A white strip with a tick, so it reads without colour. */
+.fever-done {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-card);
+    background: var(--white);
+    color: var(--black);
+}
+
+.fever-done .icon-check {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.1rem;
+}
+
+.fever-done p {
+    margin: 0;
+}
+
+.fever-progress {
+    margin: -0.5rem 0 0;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Custom Fever's game over: the VIP's save form, and the deck the cards became. */
+.fever-save {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.fever-save .screen-hint,
+.fever-save .settings-label {
+    margin: 0;
+}
+
+.fever-saved {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--white);
+    border-radius: var(--radius-card);
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}

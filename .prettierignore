@@ -1,0 +1,13 @@
+dist/
+release/
+coverage/
+test-results/
+playwright-report/
+.playwright-mcp/
+.superpowers/
+.claude/
+package-lock.json
+*.md
+build/
+data/
+.impeccable/

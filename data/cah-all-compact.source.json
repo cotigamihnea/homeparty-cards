@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/crhallberg/json-against-humanity",
+  "ref": "latest",
+  "commit": "b32d50173381d66a5a7515b822a3f344d818a939",
+  "url": "https://raw.githubusercontent.com/crhallberg/json-against-humanity/b32d50173381d66a5a7515b822a3f344d818a939/cah-all-compact.json",
+  "fetchedAt": "2026-10-11T17:56:43.265Z",
+  "license": "CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)",
+  "sha256": "d8b83fac2e4c836bbb799da3e5c5b969b593b9da6aaca5cce12bc9a2e193a6a7",
+  "counts": {
+    "white": 22441,
+    "black": 6308,
+    "packs": 205,
+    "officialPacks": 71
+  }
+}

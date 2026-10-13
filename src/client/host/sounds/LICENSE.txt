@@ -1,0 +1,14 @@
+Sound effects in this folder are by Kenney (www.kenney.nl), released under
+Creative Commons Zero (CC0 1.0): https://creativecommons.org/publicdomain/zero/1.0/
+
+  join.ogg        Interface Sounds 1.0   pluck_001.ogg
+  answered.ogg    Interface Sounds 1.0   click_001.ogg
+  deal.ogg        Interface Sounds 1.0   scratch_004.ogg
+  tick.ogg        Interface Sounds 1.0   tick_004.ogg
+  win.ogg         Music Jingles          jingles_PIZZI10.ogg
+  game-over.ogg   Music Jingles          jingles_STEEL02.ogg
+  shame.ogg       Music Jingles          jingles_PIZZI07.ogg
+  skipped.ogg     Music Jingles          jingles_PIZZI09.ogg
+  reboot.ogg      Digital Audio          powerUp2.ogg
+
+Thank you, Kenney.

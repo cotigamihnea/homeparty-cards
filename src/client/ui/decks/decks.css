@@ -1,0 +1,268 @@
+/* Custom decks: the deck list and the deck editor, shared by the VIP's phone and the laptop's panel. */
+
+.deck-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.deck-hint {
+    margin: 0;
+    font-size: var(--text-meta);
+    color: var(--muted);
+}
+
+/* A deck name: a plain field on the table. */
+.deck-input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.65rem 0.9rem;
+    border: 2px solid var(--line);
+    border-radius: var(--radius-control);
+    background: var(--black);
+    color: var(--white);
+    font: inherit;
+    font-weight: 700;
+}
+
+.deck-input:focus-visible {
+    border-color: var(--white);
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+}
+
+.deck-new-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.deck-new-row .deck-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.deck-new-row .btn {
+    flex: none;
+}
+
+.deck-import-label {
+    cursor: pointer;
+}
+
+.deck-import-label:has(.deck-import:focus-visible) {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+}
+
+.deck-status {
+    margin: 0;
+    font-weight: 700;
+}
+
+.deck-status:empty {
+    display: none;
+}
+
+.deck-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.deck-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--surface);
+}
+
+.deck-row-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.deck-row-name {
+    font-size: var(--text-lead);
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.deck-row-count {
+    font-size: var(--text-meta);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.deck-confirm {
+    margin: 0;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.deck-row-actions,
+.deck-card-actions,
+.deck-add-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.deck-row-actions .btn,
+.deck-card.is-editing .deck-card-actions .btn {
+    flex: 1 1 5.5rem;
+    min-height: 3rem;
+}
+
+/* A card's own Edit and Remove stay small and out of the way, under its right edge. */
+.deck-card:not(.is-editing) .deck-card-actions {
+    justify-content: flex-end;
+}
+
+.deck-card:not(.is-editing) .deck-card-actions .btn {
+    flex: none;
+    min-height: 3rem;
+    padding-inline: 1.1rem;
+    font-size: var(--text-body);
+}
+
+.deck-add-actions .btn {
+    flex: 1 1 8rem;
+}
+
+/* White cards or black cards: the chosen tab is filled white (and pressed), the other an outline. */
+.deck-tabs {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.deck-tab {
+    flex: 1;
+    min-height: 3rem;
+    padding-inline: 0.5rem;
+    font-size: var(--text-body);
+    font-variant-numeric: tabular-nums;
+}
+
+.deck-add {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* The card being written looks like the card it will be: white, or black with a white edge. */
+.deck-textarea {
+    min-height: 5.5rem;
+    border: 0.15rem solid var(--white);
+    border-radius: var(--radius-card);
+    background: var(--white);
+    color: var(--black);
+    font-size: var(--text-lead);
+    font-weight: 800;
+    line-height: 1.25;
+    resize: none;
+}
+
+.deck-add.is-black .deck-textarea,
+.deck-card.is-black .deck-textarea {
+    background: var(--black);
+    color: var(--white);
+}
+
+.deck-textarea::placeholder {
+    color: var(--muted-on-white);
+}
+
+.deck-add.is-black .deck-textarea::placeholder,
+.deck-card.is-black .deck-textarea::placeholder {
+    color: var(--muted);
+}
+
+.deck-textarea:focus-visible {
+    outline: 0.2rem solid var(--crown);
+    outline-offset: 0.15rem;
+}
+
+.deck-add-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.deck-length {
+    flex: none;
+    font-size: var(--text-meta);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.deck-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.deck-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Each card as a small real card: its buttons sit under it, on the table. */
+.deck-card-face {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.9rem 1.1rem 1rem;
+    border-radius: var(--radius-card);
+}
+
+.deck-card-face.is-white {
+    background: var(--white);
+    color: var(--black);
+    box-shadow: 0 0.6rem 1.6rem rgb(0 0 0 / 0.55);
+}
+
+.deck-card-face.is-black {
+    border: 0.15rem solid var(--white);
+    background: var(--black);
+    color: var(--white);
+}
+
+.deck-card-text {
+    margin: 0;
+    font-size: var(--text-lead);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+}
+
+.deck-card-face .pick-badge {
+    font-size: var(--text-meta);
+    font-weight: 800;
+}
+
+/* The settings form's label style, as a block above its field. */
+.deck-panel label.settings-label {
+    display: block;
+}
+
+/* A colour whose quota is written (Custom Fever): the box gives way to a quiet dashed note. */
+.deck-full {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    border: 2px dashed var(--line);
+    border-radius: var(--radius-card);
+    color: var(--muted);
+    font-weight: 700;
+}

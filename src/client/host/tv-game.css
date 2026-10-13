@@ -1,0 +1,1049 @@
+/*
+ * The TV during a game: a card table read from the couch. One real black card sits on the table; answers are
+ * white cards dealt beside it. Sizes are in rem, which the TV scales with the window (see host.css).
+ */
+:root {
+    --tv-meta: 1.1rem;
+    --tv-label: 1.5rem;
+    --tv-sub: 2.1rem;
+    --tv-title: 3rem;
+    --tv-hero: 5.5rem;
+}
+
+.tv-game {
+    --card-radius: 1.1rem;
+}
+
+/* Header: round, what is happening, and the countdown ring. */
+.tv-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2rem;
+    min-height: 5rem;
+}
+
+.tv-round {
+    font-size: var(--tv-label);
+    font-weight: 750;
+    color: var(--muted);
+}
+
+.tv-title {
+    margin: 0;
+    font-size: var(--tv-title);
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.tv-header .countdown {
+    min-width: 5rem;
+    padding: 0.3rem 1rem;
+    border: 0.15rem solid var(--line);
+    border-radius: 999px;
+    font-size: 2.2rem;
+    font-weight: 850;
+    text-align: center;
+}
+
+.tv-header .countdown.has-ring {
+    --ring-size: 5.5rem;
+    padding: 0;
+    border: 0;
+}
+
+/* Cards on the table. */
+.tv-card {
+    flex: none;
+    width: var(--card-w, 20rem);
+}
+
+.tv-card.is-prompt {
+    rotate: -1.2deg;
+}
+
+.tv-dealt-cards .tv-card:nth-child(odd),
+.tv-submissions li:nth-child(odd) .tv-card {
+    rotate: 1.2deg;
+}
+
+.tv-dealt-cards .tv-card:nth-child(even),
+.tv-submissions li:nth-child(even) .tv-card {
+    rotate: -1deg;
+}
+
+/* Round intro: the round, the Czar, and the black card dealt onto the table. */
+.tv-intro {
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5rem;
+    min-height: 0;
+    padding: 0 3rem;
+}
+
+.tv-intro .tv-card {
+    --card-w: 22rem;
+}
+
+.tv-intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.tv-intro-round {
+    margin: 0;
+    font-size: var(--tv-hero);
+    font-weight: 850;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.tv-finale-line {
+    margin: 0;
+    font-size: var(--tv-sub);
+    font-weight: 850;
+}
+
+.tv-czar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.tv-czar .avatar,
+.tv-spotlight-who .avatar {
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 2.6rem;
+}
+
+.tv-czar-name {
+    margin: 0;
+    font-size: var(--tv-sub);
+    font-weight: 850;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+}
+
+.tv-intro-screen.is-entering .tv-card {
+    animation: card-deal var(--dur-focal) var(--ease-out) both;
+}
+
+.tv-intro-screen.is-entering .tv-intro-round {
+    animation: punch-in var(--dur-enter) var(--ease-out) 200ms both;
+}
+
+.tv-intro-screen.is-entering .tv-finale-line,
+.tv-intro-screen.is-entering .tv-czar {
+    animation: fade-up var(--dur-enter) var(--ease-out) 450ms both;
+}
+
+/* Answers coming in: the prompt, who has answered (never what), and a nudge for the last ones. */
+.tv-round-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 4rem;
+    min-height: 0;
+}
+
+.tv-round-main .tv-card {
+    --card-w: 20rem;
+}
+
+.tv-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-self: stretch;
+    min-width: 0;
+    min-height: 0;
+}
+
+.tv-answered {
+    margin: 0;
+    font-size: var(--tv-title);
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+}
+
+.tv-nudge {
+    margin: 0;
+    font-size: var(--tv-sub);
+    font-weight: 800;
+    color: var(--warn);
+}
+
+.tv-players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Thinking is dark; answered flips to white with a tick and the word; the Czar has a crown edge. */
+.tv-player {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3.6rem;
+    padding: 0.5rem 0.8rem 0.5rem 0.6rem;
+    border: 0.15rem solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--surface);
+}
+
+.tv-player.has-answered {
+    background: var(--white);
+    color: var(--black);
+}
+
+.tv-player.is-czar {
+    border-color: var(--crown);
+}
+
+.tv-player.is-away {
+    border: 0.15rem dashed var(--line);
+    background: transparent;
+    color: var(--muted);
+}
+
+.tv-player.is-flipping {
+    animation: flip-in var(--dur-enter) var(--ease-out);
+}
+
+.tv-player .icon-check {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.tv-player-status {
+    font-size: var(--tv-meta);
+    font-weight: 700;
+    opacity: 0.75;
+}
+
+.tv-player-status:empty {
+    display: none;
+}
+
+/* Table talk: the log of house-rule moves under the players, one line each, newest first. Lines that don't fit
+   wrap into a hidden second column: shown whole or not at all. */
+.tv-table-talk {
+    display: flex;
+    flex: 1 1 0;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    gap: 0.75rem;
+    min-height: 0;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+}
+
+.tv-talk {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    font-size: var(--tv-label);
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.tv-talk-body {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tv-talk-body strong {
+    font-weight: 850;
+}
+
+.tv-talk.is-new {
+    animation: fade-up var(--dur-enter) var(--ease-out) both;
+}
+
+/* The spotlight: a new move holds the middle of the TV for a few seconds, on a flat black scrim. */
+.tv-spotlight {
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 2.5rem;
+    padding: 3rem;
+    background: rgb(0 0 0 / 0.88);
+}
+
+.tv-spotlight-who {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 70rem;
+}
+
+.tv-spotlight h2 {
+    margin: 0;
+    font-size: var(--tv-title);
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+}
+
+.tv-spotlight-card {
+    --card-w: 22rem;
+
+    rotate: -2deg;
+}
+
+.tv-spotlight-sub {
+    margin: 0;
+    font-size: var(--tv-sub);
+    font-weight: 800;
+    color: var(--muted);
+}
+
+.tv-spotlight.is-entering .tv-spotlight-who {
+    animation: punch-in var(--dur-enter) var(--ease-out) both;
+}
+
+.tv-spotlight.is-entering .tv-spotlight-card {
+    animation: card-deal var(--dur-focal) var(--ease-out) 150ms both;
+}
+
+.name-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.name-tag .avatar {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.05rem;
+}
+
+.tv-player-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+/* The reveal: each answer is dealt onto the table beside the prompt. */
+.tv-table {
+    --card-w: 19rem;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3rem;
+    min-height: 0;
+}
+
+.tv-table[data-pick='2'] {
+    --card-w: 17.5rem;
+}
+
+.tv-table[data-pick='3'] {
+    --card-w: 15rem;
+}
+
+.tv-dealt {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tv-reveal-count {
+    margin: 0;
+    font-size: var(--tv-label);
+    font-weight: 800;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.tv-dealt-cards {
+    display: flex;
+    gap: 2.25rem;
+}
+
+.tv-card.is-dealt {
+    animation: card-deal var(--dur-focal) var(--ease-out) both;
+}
+
+.tv-card.is-dealt:nth-child(2) {
+    animation-delay: 140ms;
+}
+
+.tv-card.is-dealt:nth-child(3) {
+    animation-delay: 280ms;
+}
+
+/* Judging: the prompt, and every answer as a white card; the Czar's current look lifts. */
+.tv-judging-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 3rem;
+    min-height: 0;
+}
+
+.tv-card.is-small {
+    --card-w: 13rem;
+}
+
+.tv-submissions {
+    --card-w: 17rem;
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 3), var(--card-w));
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 1.5rem 0 0;
+    list-style: none;
+}
+
+.tv-submissions[data-cols='1'] {
+    --cols: 1;
+}
+
+.tv-submissions[data-cols='2'] {
+    --cols: 2;
+}
+
+.tv-submissions[data-cols='3'] {
+    --cols: 3;
+}
+
+.tv-submissions[data-cols='4'] {
+    --cols: 4;
+    --card-w: 13.5rem;
+}
+
+.tv-submissions[data-cols='6'] {
+    --cols: 6;
+}
+
+.tv-submissions[data-rows='2'] {
+    --card-w: 8.8rem;
+    row-gap: 1.6rem;
+}
+
+.tv-submissions[data-rows='2'][data-cols='6'] {
+    --card-w: 8.6rem;
+}
+
+.tv-submissions li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.tv-submissions .tv-card {
+    transition:
+        transform var(--dur-state) var(--ease-out),
+        outline-color var(--dur-state);
+    outline: 0.35rem solid transparent;
+    outline-offset: 0.3rem;
+}
+
+.tv-submissions .is-highlighted .tv-card {
+    outline-color: var(--crown);
+    transform: translateY(-0.8rem) scale(1.04);
+}
+
+.tv-looking {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    z-index: 1;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    background: var(--crown);
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 850;
+    white-space: nowrap;
+    transform: translate(-50%, -0.2rem);
+}
+
+.tv-submissions.is-cascading li {
+    animation: fade-up var(--dur-enter) var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* The result: the winning card lands on the prompt; the winner takes the stage; every author is shown. */
+.tv-result-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 3.5rem;
+    min-height: 0;
+}
+
+.tv-table.is-winning {
+    --card-w: 16.5rem;
+    flex: none;
+    gap: 0;
+    padding: 0 1rem 2.5rem 0;
+}
+
+/* The winning card leans on the prompt without covering its text, so the room can read the whole joke. */
+.tv-table.is-winning .is-winner-card {
+    margin: 2.5rem 0 0 -0.75rem;
+    rotate: 4deg;
+}
+
+.tv-result-screen.is-entering .is-winner-card {
+    animation: card-land var(--dur-focal) var(--ease-out) 150ms both;
+}
+
+.tv-result-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+    min-height: 0;
+}
+
+.tv-winner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+        'avatar name'
+        'avatar plus'
+        'avatar total'
+        'shame shame';
+    align-items: center;
+    column-gap: 1.5rem;
+}
+
+.tv-winner .avatar {
+    grid-area: avatar;
+    width: 7rem;
+    height: 7rem;
+    font-size: 3.2rem;
+}
+
+.tv-winner-name {
+    grid-area: name;
+    margin: 0;
+    font-size: var(--tv-title);
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+}
+
+.tv-plus-one {
+    grid-area: plus;
+    margin: 0;
+    font-size: var(--tv-sub);
+    font-weight: 850;
+    color: var(--crown);
+}
+
+.tv-new-score {
+    grid-area: total;
+    margin: 0;
+    font-size: var(--tv-label);
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.tv-result-screen.is-entering .tv-winner .avatar {
+    animation: pop 520ms var(--ease-out) 500ms both;
+}
+
+.tv-result-screen.is-entering .tv-winner-name {
+    animation: punch-in var(--dur-enter) var(--ease-out) 650ms both;
+}
+
+.tv-result-screen.is-entering .tv-plus-one {
+    animation: pop 520ms var(--ease-out) 850ms both;
+}
+
+.tv-all-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 0;
+}
+
+.tv-all-answers h2,
+.tv-final-scores h2 {
+    margin: 0;
+    font-size: var(--tv-meta);
+    font-weight: 800;
+    color: var(--muted);
+}
+
+.tv-all-answers ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tv-all-answers ul[data-many='true'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Each answer is a slip of white card with its author. */
+.tv-all-answers li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 0.55rem 0.8rem 0.65rem;
+    border-radius: 0.6rem;
+    background: var(--white);
+    color: var(--black);
+}
+
+.tv-all-answers li.is-winner {
+    outline: 0.3rem solid var(--crown);
+    outline-offset: 0.15rem;
+}
+
+.tv-result-screen.is-entering .tv-all-answers li {
+    animation: fade-up var(--dur-enter) var(--ease-out) both;
+    animation-delay: calc(1000ms + var(--i, 0) * 60ms);
+}
+
+.tv-slip-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.tv-slip-head .avatar {
+    width: 1.7rem;
+    height: 1.7rem;
+    font-size: 0.85rem;
+}
+
+.tv-all-answers .tv-player-name {
+    font-size: 1.05rem;
+}
+
+.tv-winner-tag {
+    padding: 0.05rem 0.55rem;
+    border-radius: 999px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 850;
+}
+
+/* Seven or more answers: a smaller winner and one-line slips, so all twelve fit above the host controls. */
+.is-crowded .tv-winner .avatar {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.3rem;
+}
+
+.is-crowded .tv-winner-name {
+    font-size: 2rem;
+}
+
+.is-crowded .tv-plus-one {
+    font-size: 1.6rem;
+}
+
+.is-crowded .tv-new-score {
+    font-size: 1.2rem;
+}
+
+.is-crowded .tv-result-side {
+    gap: 1rem;
+}
+
+.is-crowded .tv-all-answers ul {
+    gap: 0.45rem;
+}
+
+.is-crowded .tv-all-answers li {
+    gap: 0.15rem;
+    padding: 0.4rem 0.7rem 0.45rem;
+}
+
+.is-crowded .tv-answer-text {
+    -webkit-line-clamp: 1;
+    font-size: 1rem;
+}
+
+.tv-all-answers .tv-player-name,
+.tv-standings .tv-player-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tv-answer-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* A skipped round: the prompt goes back under the deck. */
+.tv-void {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    min-height: 0;
+    padding: 0 3rem;
+}
+
+.tv-void .tv-card {
+    --card-w: 18rem;
+    opacity: 0.55;
+}
+
+.tv-result-screen.is-entering .is-returning {
+    animation: card-return var(--dur-focal) var(--ease-out) 300ms both;
+}
+
+@keyframes card-return {
+    to {
+        opacity: 0.55;
+        transform: translateY(6%) rotate(-3deg);
+    }
+}
+
+.tv-void-reason {
+    max-width: 30ch;
+    margin: 0;
+    font-size: var(--tv-title);
+    font-weight: 850;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+/* Game over: a real podium (second, first, third), then everyone's final score. */
+.tv-final {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 4rem;
+    min-height: 0;
+}
+
+.tv-podium {
+    align-self: end;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.podium-step {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.podium-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    text-align: center;
+}
+
+.podium-player .avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2.1rem;
+}
+
+.is-rank-1 .podium-player .avatar {
+    width: 6rem;
+    height: 6rem;
+    font-size: 2.8rem;
+}
+
+.podium-player .tv-player-name {
+    font-size: 1.7rem;
+    font-weight: 850;
+}
+
+/* Tied players share a step: their avatars overlap in a row and their names are listed underneath. */
+.podium-tie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+}
+
+.podium-tie-avatars {
+    display: flex;
+}
+
+.podium-tie-avatars .avatar {
+    width: 3rem;
+    height: 3rem;
+    margin-left: -0.8rem;
+    border: 0.2rem solid var(--black);
+    font-size: 1.6rem;
+}
+
+.podium-tie-avatars .avatar:first-child {
+    margin-left: 0;
+}
+
+.podium-tie-more {
+    background: var(--white);
+    color: var(--black);
+    font-size: 1.2rem;
+}
+
+.podium-tie-names {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 1.4rem;
+    font-weight: 850;
+    line-height: 1.15;
+}
+
+.podium-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    background: var(--surface);
+    text-align: center;
+}
+
+.is-rank-1 .podium-block {
+    min-height: 15rem;
+    background: var(--white);
+    color: var(--black);
+}
+
+.is-rank-2 .podium-block {
+    min-height: 10.5rem;
+}
+
+.is-rank-3 .podium-block {
+    min-height: 7rem;
+}
+
+.podium-rank {
+    font-size: 3rem;
+    font-weight: 850;
+    line-height: 1;
+}
+
+.podium-points {
+    font-size: 1.2rem;
+    font-weight: 750;
+}
+
+.tv-game-over-screen.is-entering .podium-step {
+    animation: rise var(--dur-focal) var(--ease-out) both;
+}
+
+.tv-game-over-screen.is-entering .is-rank-3 {
+    animation-delay: 200ms;
+}
+
+.tv-game-over-screen.is-entering .is-rank-2 {
+    animation-delay: 550ms;
+}
+
+.tv-game-over-screen.is-entering .is-rank-1 {
+    animation-delay: 900ms;
+}
+
+.tv-final-scores {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.tv-standings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tv-standings[data-many='true'] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tv-standings li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-control);
+    background: var(--surface);
+}
+
+.tv-standings .name-tag {
+    flex: 1;
+}
+
+.tv-standings .tv-player-name {
+    font-size: 1.2rem;
+}
+
+.tv-rank,
+.tv-score {
+    font-size: 1.15rem;
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+}
+
+.tv-rank {
+    min-width: 2.5ch;
+}
+
+/* Paused: the whole TV says so and names who is missing. */
+.tv-pause-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 3rem;
+    background: rgb(0 0 0 / 0.86);
+}
+
+.tv-pause-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 52rem;
+    padding: 2.5rem 3rem;
+    border-radius: var(--radius-card);
+    background: var(--warn);
+    color: var(--black);
+}
+
+.tv-pause-overlay.is-entering .tv-pause-card {
+    animation: punch-in var(--dur-enter) var(--ease-out) both;
+}
+
+.tv-pause-card h2 {
+    margin: 0;
+    font-size: 3.5rem;
+    font-weight: 850;
+    letter-spacing: -0.035em;
+}
+
+.tv-pause-card p {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 750;
+}
+
+/* Judging and results: only the players whose phones dropped, so the room (and the laptop) can see who is away. */
+.tv-away .tv-players {
+    justify-content: flex-end;
+}
+
+/* Results: everyone's score in one row, leaders first. */
+/* Chips that don't fit wrap onto a second row, which is hidden, so no chip is ever cut in half. */
+.tv-score-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 0.6rem;
+    max-height: 2.6rem;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+}
+
+.tv-score-strip li {
+    display: flex;
+    flex: none;
+    align-items: center;
+    height: 2.6rem;
+    gap: 0.6rem;
+    padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+    border-radius: 999px;
+    background: var(--surface);
+}
+
+.tv-score-strip .tv-player-name {
+    max-width: 9rem;
+    overflow: hidden;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tv-score-strip .name-tag .avatar {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.9rem;
+}
+
+.tv-score-strip .tv-score {
+    font-size: 1.1rem;
+}
+
+/* Custom Fever: how the writing ends, under the done count. */
+.tv-writing-hint {
+    max-width: 32rem;
+    margin: 0;
+    font-size: var(--tv-meta);
+    font-weight: 700;
+    color: var(--muted);
+}
+
+/* The deck Custom Fever's cards were saved as, under the podium and the scores. */
+.tv-fever-saved {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: var(--tv-label);
+    font-weight: 750;
+    color: var(--muted);
+}

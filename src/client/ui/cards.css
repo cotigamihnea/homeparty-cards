@@ -1,0 +1,151 @@
+/*
+ * Real-proportion playing cards (63:88), shared by the TV and phones. Card text is sized from the card's own
+ * width (container query units), in six length buckets, so a long card shrinks instead of overflowing.
+ */
+.card {
+    position: relative;
+    isolation: isolate;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 63 / 88;
+    border-radius: var(--card-radius, 1rem);
+    font-weight: 800;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+}
+
+.card-black {
+    border: 0.15rem solid var(--white);
+    background: var(--black);
+    color: var(--white);
+}
+
+.card-white {
+    background: var(--white);
+    color: var(--black);
+    box-shadow: 0 0.6rem 1.6rem rgb(0 0 0 / 0.55);
+}
+
+.card > .card-text,
+.card-answers {
+    padding: 10cqi 9cqi 0;
+    font-size: 10.5cqi;
+}
+
+.card[data-size='m'] > .card-text,
+.card[data-size='m'] .card-answers {
+    font-size: 8.6cqi;
+}
+
+.card[data-size='l'] > .card-text,
+.card[data-size='l'] .card-answers {
+    font-size: 7.2cqi;
+}
+
+.card[data-size='xl'] > .card-text,
+.card[data-size='xl'] .card-answers {
+    font-size: 6cqi;
+}
+
+.card[data-size='xxl'] > .card-text,
+.card[data-size='xxl'] .card-answers {
+    font-size: 4.8cqi;
+}
+
+.card[data-size='xxxl'] > .card-text,
+.card[data-size='xxxl'] .card-answers {
+    font-size: 4cqi;
+}
+
+.card-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.card-answer {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45em;
+}
+
+.card-answer-number {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 1.35em;
+    height: 1.35em;
+    border-radius: 999px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.7em;
+    font-weight: 850;
+    letter-spacing: 0;
+}
+
+.card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4cqi;
+    padding: 0 8cqi 7cqi;
+}
+
+.card-mark {
+    width: 9cqi;
+    height: 9cqi;
+}
+
+.card-mark-front {
+    fill: currentcolor;
+}
+
+.card-mark-back {
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 1.6;
+}
+
+.card .pick-badge {
+    font-size: 5.2cqi;
+}
+
+/* A Pick 2/3 answer is several cards: another card's edge shows behind the top one. */
+.card-white.is-stack::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 0.12rem solid var(--black);
+    border-radius: inherit;
+    background: var(--white);
+    transform: rotate(5deg) translate(4%, 1%);
+}
+
+/* Wide cards (phones): the same card, laid out for reading in a list rather than as a playing card. */
+.card.is-wide {
+    aspect-ratio: auto;
+    min-height: 0;
+}
+
+.card.is-wide > .card-text,
+.card.is-wide .card-answers {
+    padding: 1.1rem 1.15rem 0.6rem;
+    font-size: var(--wide-card-text, 1.3rem);
+}
+
+.card.is-wide .card-foot {
+    padding: 0.4rem 1.15rem 0.9rem;
+}
+
+.card.is-wide .card-mark {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.card.is-wide .pick-badge {
+    font-size: 0.95rem;
+}

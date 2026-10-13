@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/InterVariable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/InterVariable-Italic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: dark;
+    --black: #000;
+    --white: #fff;
+    --muted: rgb(255 255 255 / 0.68);
+    --muted-on-white: rgb(0 0 0 / 0.66);
+    --surface: rgb(255 255 255 / 0.08);
+    --line: rgb(255 255 255 / 0.24);
+    --crown: #ffd23f;
+    --warn: #ffb020;
+    --danger: #ff7a6e;
+    --radius-card: 1.1rem;
+    --radius-control: 0.9rem;
+    --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Motion: feedback, state change, entrance, and the one authored moment (deal and winner). */
+    --dur-quick: 150ms;
+    --dur-state: 240ms;
+    --dur-enter: 480ms;
+    --dur-focal: 650ms;
+
+    /* Phone type scale (rem = 16px). The TV has its own, in host/tv-game.css. */
+    --text-hero: 2.4rem;
+    --text-title: 2rem;
+    --text-panel: 1.4rem;
+    --text-lead: 1.15rem;
+    --text-body: 1.05rem;
+    --text-meta: 0.9rem;
+}

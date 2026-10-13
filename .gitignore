@@ -1,0 +1,39 @@
+# What the public repository holds: the game's source (src/), its card data (data/), sounds and fonts (inside
+# src/client), the app icon (build/), the tests and GitHub workflows, the build and lint configs, the README and
+# the licences. Everything below is either rebuilt from those, private, or local to this computer.
+
+# Installed packages and build output (npm ci, npm run build, npm run package)
+node_modules/
+dist/
+release/
+
+# Test and coverage output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Your own custom decks: the game keeps them in custom-decks/ when it runs from source
+custom-decks/
+
+# Private design and planning documents (they stay on this computer)
+docs/
+DESIGN.md
+PRODUCT.md
+.impeccable/
+
+# Local tools and assistants
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+skills-lock.json
+.superpowers/
+.playwright-mcp/
+
+# Logs, environment files and operating-system clutter
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
+desktop.ini
